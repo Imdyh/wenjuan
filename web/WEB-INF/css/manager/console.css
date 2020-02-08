@@ -1,0 +1,70 @@
+body,html{
+	background-color: #f5f5f5;
+	width: 100%;
+}
+.list-group>a{
+	padding-left: 30px;
+}
+#mineinfo{
+	position: fixed;
+	top: 59px;
+	right: 0px;
+}
+#cptg{
+	margin-bottom: -1px;
+	text-align: center;
+}
+.head{
+	height: 60px;
+	background-color: white;
+	position: fixed;
+	width: 100%;
+    border-bottom: 1px solid #ddd;
+    color: gray;
+}
+#qlogo{
+	height: 60px;
+	border: 1px solid #c4c4c4;
+	padding: 7px;
+}
+#wjzxlist{
+	margin-bottom: -1px;
+	text-align: center;
+}
+#xtsh{
+	text-align: center;
+}
+.tit{
+	font-size: 25px;
+	font-weight: bold;
+	position: fixed;
+	left: 0px; 
+	line-height: 60px;
+	width: 200px;
+	text-align: center;
+	font-family: 楷体;
+}
+.admininfo{
+	font-size: 15px;
+	font-weight: bold;
+	position: fixed;
+	right: 30px; 
+	line-height: 57px;
+}
+.main{
+	
+}
+.nav{
+	width: 200px;
+	position: fixed;
+	bottom: 0px;
+	top:60px;
+	background-color: white;
+	
+}
+.contex{
+	padding:15px;
+	margin-top:50px;
+	width: calc(100% - 200px);
+	float:right;
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 不支持分布式 -->
+    <settings>
+        <!--显示sql-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!-- 支持二级缓存   正对当前Mapper
+        面试问题 Hibernate的一二级缓存 和mybatis一二级缓存区别
+        <setting name="cacheEnabled" value="true"/>-->
+  		<setting name="cacheEnabled" value="true"/>
+        <!-- 是否延迟加载 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- 是否取消消极加载   按需加载数据-->
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
+
+    <typeAliases>
+        <!--扫描包下所有类 和类定义别名,实体类-->
+        <package name="com.wenjuan.entity" />
+    </typeAliases>
+
+   <mappers>
+       <package name="com.wenjuan.dao.mapper"/>
+   </mappers>
+
+</configuration>

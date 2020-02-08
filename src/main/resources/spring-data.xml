@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!-- 现获取 Ojdbc.properties-->
+    <context:property-placeholder  location="classpath:mysql.properties"/>
+    <!-- datasource  获取数据源  数据库链接-->
+    <bean name="dataSource"   class="com.alibaba.druid.pool.DruidDataSource"  scope="prototype" >
+        <!-- <property name="driverClass"  value="oracle.jdbc.driver.OracleDriver"></property>
+             <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:orcl2"></property>
+             <property name="user" value="scott"></property>
+             <property name="password" value="123"></property>
+             <property name="maxPoolSize" value="50"></property>
+             <property name="minPoolSize" value="2"></property> -->
+        <property name="driverClassName"  value="${driver}"></property>
+        <property name="url" value="${url}"></property>
+        <property name="username" value="${user}"></property>
+        <property name="password" value="${password}"></property>
+        <property name="maxActive" value="${maxpool}"></property>
+        <property name="minIdle" value="${minpool}"></property>
+    </bean>
+
+    <!-- 获得SQLSessionFactory -->
+    <bean id="sqlSessionFactory"  class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource"  ref="dataSource"></property>
+        <property name="configLocation"  value="classpath:mybatis-config.xml"></property>
+    </bean>
+
+    <!-- 接口的代理对象 -->
+    <bean  class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- <property name="sqlSessionFactory" ref="sqlSessionFactroy"></property> -->
+        <!-- 原因在spring里使用org.mybatis.spring.mapper.MapperScannerConfigurer 进行自动扫描的时候，
+        设置了sqlSessionFactory 的话，可能会导致PropertyPlaceholderConfigurer失效
+        ，也就是用${jdbc.username}这样之类的表达式，将无法获取到properties文件里的内容 -->
+        <property name="sqlSessionFactoryBeanName"  value="sqlSessionFactory"/>
+        <!-- 要代理de接口de路径 -->
+        <property name="basePackage" value="com.wenjuan.dao"/>
+    </bean>
+
+    <!-- 事务 -->
+
+    <bean id="transactionManager"  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource"  ref="dataSource"/>
+    </bean>
+
+    <!-- 启动事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"  proxy-target-class="true"/>
+    <aop:aspectj-autoproxy  proxy-target-class="true"/>
+</beans>

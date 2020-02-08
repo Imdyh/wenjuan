@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wenjuan.dao.iUserDao">
+	
+	<select id="selectQqUserByOpenid" resultType="QQUser">
+		SELECT * FROM tb_qq WHERE openid=#{openid}
+	</select>
+	
+	<select id="selectUserByQQid" resultType="User">
+		SELECT * FROM tb_user WHERE qq_id=#{id}
+	</select>
+	
+	<insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO tb_user VALUES(NULL,#{email},#{password},#{nickname},#{headicon},#{qq_id},#{role},CURRENT_TIMESTAMP,1)
+	</insert>
+	
+	<insert id="insertQQuser" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO tb_qq VALUES(NULL,#{openid},#{nickname},#{gender},#{province},#{city},#{year},#{constellation},#{figureurl_1},#{figureurl_qq_1})
+	</insert>
+</mapper>
