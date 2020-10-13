@@ -23,7 +23,7 @@
       <slf4j.version>1.7.5</slf4j.version>
       <log4j.version>1.2.17</log4j.version>
       <!-- junit版本号 -->
-      <junit.version>4.12</junit.version>
+      <junit.version>4.13.1</junit.version>
       <!-- mybatis版本号 -->
       <mybatis.version>3.2.7</mybatis.version>
       <swagger.version>2.6.1</swagger.version>
@@ -35,7 +35,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>4.13.1</version>
       <scope>test</scope>
     </dependency>
       <!-- 添加Spring依赖 -->
